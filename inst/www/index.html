@@ -100,8 +100,9 @@ sqrt(1000)</div>
     </div>
     <div class="block">
       <div class="text-area">
-        <pre><code id="output"></code></pre>
-        <div id="plot"></div>
+        <pre><code id="output">
+          <iframe src="about:blank" id="code-iframe"></iframe>
+        </code></pre>
       </div>
       <div class="footer">
         
@@ -123,11 +124,11 @@ sqrt(1000)</div>
             var req = ocpu.call("rmdtext", {
               text : "```{r}\n" + editor.getSession().getValue() + "\n```"
             }, function(session){
-              $("#output").text("Server error: " + session.getFileURL("output.html"));  
+              $("#code-iframe").attr('src', session.getFileURL("output.html"));
             }).fail(function(text){
-                $("#output").text("Server error: " + req.responseText); 
+              $("#output").text("Server error: " + req.responseText); 
             }).always(function(){
-                $("button").removeAttr("disabled");    
+              $("button").removeAttr("disabled");    
             });
         });
       });
