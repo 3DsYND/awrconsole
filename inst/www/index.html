@@ -19,7 +19,7 @@ $(function(){
   
   function domarkdown(e){
     var req = ocpu.call("rmdtext", {
-      text : "```{r}" + editor.getSession().getValue() + "```"
+      text : "```{r}\n" + editor.getSession().getValue() + "\n```"
     }, function(session){
       $("iframe").attr('src', session.getFileURL("output.html"));     
     }).fail(function(text){
