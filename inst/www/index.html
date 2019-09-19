@@ -115,7 +115,6 @@ sqrt(1000)</div>
         editor.setTheme("ace/theme/chrome");
         editor.getSession().setMode("ace/mode/r");
         editor.setFontSize("14px");
-        ocpu.seturl("/ocpu/library/base/R");
 
         $("#submitbutton").on("click", function(){
             var mysnippet = new ocpu.Snippet("```{r}\n" + editor.getSession().getValue() + "\n```");
