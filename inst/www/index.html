@@ -11,7 +11,7 @@
 <script>
 $(function(){
   var editor = ace.edit("editor");
-  editor.setTheme("ace/theme/monokai");
+  editor.setTheme("ace/theme/chrome");
   editor.getSession().setMode("ace/mode/r");
   editor.setFontSize("14px");
 
@@ -19,7 +19,7 @@ $(function(){
   
   function domarkdown(e){
     var req = ocpu.call("rmdtext", {
-      text : editor.getSession().getValue()
+      text : "```{r}" + editor.getSession().getValue() + "```"
     }, function(session){
       $("iframe").attr('src', session.getFileURL("output.html"));     
     }).fail(function(text){
