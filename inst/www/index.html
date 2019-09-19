@@ -116,16 +116,14 @@ sqrt(1000)</div>
         editor.getSession().setMode("ace/mode/r");
         editor.setFontSize("14px");
 
-        $("#submitbutton").on("click", function(){
-            var mysnippet = new ocpu.Snippet("```{r}\n" + editor.getSession().getValue() + "\n```");
-            
+        $("#submitbutton").on("click", function(){            
             $("button").attr("disabled", "disabled");
             $('#plot').empty();
 
             var req = ocpu.call("rmdtext", {
-              text : mysnippet
+              text : "```{r}\n" + editor.getSession().getValue() + "\n```"
             }, function(session){
-              $("iframe").attr('src', session.getFileURL("output.html"));     
+              $("#output").text("Server error: " + session.getFileURL("output.html"));  
             }).fail(function(text){
                 $("#output").text("Server error: " + req.responseText); 
             }).always(function(){
