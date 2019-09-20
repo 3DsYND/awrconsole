@@ -126,7 +126,9 @@ sqrt(1000)</div>
             var req = ocpu.call("rmdtext", {
               text : "```{r}\n" + editor.getSession().getValue() + "\n```"
             }, function(session){
-              $("#code-iframe").attr('src', session.getFileURL("output.html"));
+              var url = session.getFileURL("output.html")
+              url = url.replace(/^(?:\/\/|[^\/]+)*\//, "/")
+              $("#code-iframe").attr('src', url);
             }).fail(function(text){
               $("#output").text("Server error: " + req.responseText); 
             }).always(function(){
