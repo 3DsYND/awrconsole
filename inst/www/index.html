@@ -12,42 +12,61 @@
   body {
     height: 100%;
     margin: 0;
-    background-color: #fdfdfd;
   }
 
   .awrconsole {
-    display: flex;
-    flex-flow: row;
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-flow: column;
+    background-color: #fbfbfb;
   }
 
-  .awrconsole .block {
+  .awrconsole .header {
+    padding: 10px 85px;
+    background: #506fa2;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .awrconsole .console {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+  }
+
+  .awrconsole .console .block {
     display: flex;
     flex-flow: column;
     flex: 1;
-    padding: 5px;
+  }
+
+  .awrconsole .console .header {
+    flex-shrink: 1;
+    padding: 5px 60px;
+    background: #9daec7;
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 0.8rem;
   }
 
   .awrconsole .footer {
     flex-shrink: 1;
   }
 
-  .awrconsole .text-area {
+  .awrconsole .console .text-area {
     flex: 1;
-    overflow: auto;
     background-color: #fff;
   }
-  
-  .awrconsole .text-area img {
-    width: 100%;
-  }
 
-  #editor {
+  .awrconsole #editor {
     height: 100%;
   }	
 
-  #submitbutton {
+  .awrconsole #submitbutton {
     border: none;
     margin: 5px 25px;
     padding: 7px 50px;
@@ -63,24 +82,21 @@
     -moz-appearance: none;
   }
 
-  #code-iframe {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 50%;
+  .awrconsole #code-iframe {
+    width: 100%;
     height: 100%;
     border: 0;
-    margin: 0;
-    z-index: 999;
   }
 </style>
 </head>
 <body>
-
   <div class="awrconsole">
-    <div class="block">
-      <div class="text-area">
-        <div id="editor"># Calculate 3 + 4
+    <div class="header">R Dojo</div>
+    <div class="console">
+      <div class="block">
+        <div class="header">R Script (Enter R Code Below)</div>
+        <div class="text-area" style="margin-right:5px;">
+          <div id="editor"># Calculate 3 + 4
 3 + 4
 plot(1:10)
 hist(1:10, col = "blue")
@@ -95,27 +111,22 @@ plot(x, y)
 abline(model)
 
 sqrt(1000)</div>
+        </div>
       </div>
-      <div class="footer">
-        <button id="submitbutton" type="button">Run</button>
+      <div class="block">
+        <div class="header">R Numerical & Graphical Output</div>
+        <div class="text-area">
+            <iframe src="about:blank" id="code-iframe"></iframe>
+        </div>
       </div>
     </div>
-    <div class="block">
-      <div class="text-area">
-        <pre><code id="output">
-          <iframe src="about:blank" id="code-iframe"></iframe>
-        </code></pre>
-      </div>
-      <div class="footer">
-        
-      </div>
+    <div class="footer">
+      <button id="submitbutton" type="button">Run</button>
     </div>
   </div>
-
   <script>
       $(function(){
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/chrome");
         editor.getSession().setMode("ace/mode/r");
         editor.setFontSize("14px");
 
