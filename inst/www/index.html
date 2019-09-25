@@ -23,11 +23,17 @@
   }
 
   .awrconsole .header {
-    padding: 10px 85px;
+    display: flex;
+    align-items: center;
     background: #506fa2;
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: bold;
+  }
+
+  .awrconsole .header img {
+    width: 35px;
+    margin: 0 10px 0 60px;
   }
 
   .awrconsole .console {
@@ -91,7 +97,10 @@
 </head>
 <body>
   <div class="awrconsole">
-    <div class="header">R Dojo</div>
+    <div class="header">
+      <img src="logo.png">
+      <p>R Dojo</p>
+    </div>
     <div class="console">
       <div class="block">
         <div class="header">R Script (Enter R Code Below)</div>
